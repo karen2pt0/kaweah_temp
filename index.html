@@ -1,0 +1,865 @@
+<!-- premium-mockup.html  (single file, open in browser) -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kaweah Brewing Co. — Premium Mockup</title>
+  <meta name="description" content="Premium brewery website mockup: tap list, events, private bookings, and gallery." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Optional: remove if you want zero external deps -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#07080b;
+      --bg2:#0b0d12;
+      --ink:#eef2f6;
+      --muted:#aab2bf;
+      --line:rgba(255,255,255,.10);
+      --line2:rgba(255,255,255,.16);
+
+      /* “dark wood / brass” vibe */
+      --brass:#d8b26a;
+      --brass2:#b7893e;
+      --amber:#f0c27a;
+      --copper:#c77a3a;
+
+      --card:rgba(255,255,255,.06);
+      --card2:rgba(255,255,255,.04);
+      --shadow: 0 24px 70px rgba(0,0,0,.55);
+      --radius: 20px;
+      --radius2: 14px;
+
+      --max: 1160px;
+      --serif: "Cormorant Garamond", ui-serif, Georgia, serif;
+      --sans: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1100px 600px at 12% -10%, rgba(216,178,106,.20), transparent 60%),
+        radial-gradient(900px 700px at 88% 8%, rgba(199,122,58,.14), transparent 65%),
+        radial-gradient(800px 600px at 50% 110%, rgba(240,194,122,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg), #05060a 55%, #04050a);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit;text-decoration:none}
+    a:hover{ text-decoration: underline; }
+
+    .container{ width:min(var(--max), calc(100% - 2.2rem)); margin:0 auto; }
+
+    .skip{
+      position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;
+    }
+    .skip:focus{
+      left:1rem;top:1rem;width:auto;height:auto;
+      background:rgba(0,0,0,.6);
+      border:1px solid var(--line2);
+      padding:.6rem .8rem;border-radius:12px;z-index:9999;
+    }
+
+    /* --- Top bar --- */
+    .topbar{
+      position:sticky; top:0; z-index:60;
+      background: rgba(8,10,14,.72);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:.9rem 0; gap:1rem;
+    }
+    .brand{
+      display:flex; align-items:center; gap:.85rem;
+      min-width: 220px;
+    }
+    .mark{
+      width:44px; height:44px;
+      border-radius: 14px;
+      display:grid; place-items:center;
+      background: linear-gradient(180deg, rgba(216,178,106,.25), rgba(216,178,106,.05));
+      border:1px solid rgba(216,178,106,.40);
+      box-shadow: 0 14px 30px rgba(0,0,0,.25);
+      letter-spacing:.08em;
+      font-weight:900;
+    }
+    .brandtext{ line-height:1.05; }
+    .brandtext .name{
+      font-family: var(--serif);
+      font-weight:700;
+      letter-spacing:.02em;
+      font-size: 1.2rem;
+    }
+    .brandtext .sub{
+      color: rgba(238,242,246,.70);
+      font-size:.85rem;
+      margin-top:.1rem;
+    }
+
+    .nav{
+      display:flex; align-items:center; gap: .35rem;
+    }
+    .nav a{
+      padding:.55rem .7rem;
+      border-radius: 12px;
+      color: rgba(238,242,246,.88);
+    }
+    .nav a:hover{
+      text-decoration:none;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.06);
+    }
+
+    .nav-toggle{
+      display:none;
+      width:44px; height:44px;
+      border-radius: 12px;
+      border:1px solid var(--line2);
+      background: transparent;
+      cursor:pointer;
+    }
+    .bars{
+      width:18px;height:2px;background:rgba(238,242,246,.9);
+      display:block;margin:0 auto;position:relative;
+    }
+    .bars::before,.bars::after{
+      content:""; position:absolute; left:0; width:18px; height:2px;
+      background:rgba(238,242,246,.9);
+    }
+    .bars::before{ top:-6px; }
+    .bars::after{ top:6px; }
+
+    /* --- Buttons --- */
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:.55rem;
+      padding:.85rem 1.1rem;
+      border-radius: 14px;
+      font-weight:800;
+      letter-spacing:.01em;
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: 0 16px 40px rgba(0,0,0,.30);
+      background: linear-gradient(180deg, rgba(216,178,106,.95), rgba(183,137,62,.95));
+      color:#0b0d10;
+      text-decoration:none;
+      transform: translateZ(0);
+    }
+    .btn:hover{ filter: brightness(1.03); text-decoration:none; }
+    .btn:active{ transform: translateY(1px); }
+    .btn-ghost{
+      background: transparent;
+      color: var(--ink);
+      border:1px solid rgba(216,178,106,.40);
+      box-shadow:none;
+    }
+    .btn-ghost:hover{ background: rgba(216,178,106,.10); }
+    .btn-small{ padding:.65rem .85rem; border-radius: 12px; font-weight:800; }
+    .btn-pill{
+      padding:.55rem .85rem;
+      border-radius:999px;
+      background: rgba(216,178,106,.10);
+      border:1px solid rgba(216,178,106,.30);
+      color: rgba(238,242,246,.90);
+      font-weight:700;
+      font-size:.9rem;
+      box-shadow:none;
+    }
+
+    /* --- Hero --- */
+    .hero{
+      position:relative;
+      padding: 2.1rem 0 1.4rem;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 2rem;
+      align-items:start;
+      padding: 1.2rem 0 0;
+    }
+
+    .headline{
+      font-family: var(--serif);
+      font-weight: 700;
+      letter-spacing: -.01em;
+      font-size: clamp(2.35rem, 4.2vw, 3.6rem);
+      line-height: 1.02;
+      margin:.75rem 0 .55rem;
+    }
+
+    .lead{
+      color: rgba(238,242,246,.84);
+      font-size: 1.06rem;
+      max-width: 52ch;
+      margin: 0 0 1.1rem;
+    }
+
+    .hero-ctas{ display:flex; gap:.9rem; flex-wrap:wrap; margin: 1.1rem 0 1.1rem; }
+
+    .kpi-row{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap:.75rem;
+      margin-top: 1.1rem;
+    }
+    .kpi{
+      padding:.9rem 1rem;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    .kpi .t{ color: rgba(238,242,246,.75); font-size:.86rem; font-weight:700; letter-spacing:.02em; }
+    .kpi .v{ font-weight:900; margin-top:.35rem; }
+
+    /* --- “Cinematic” media stack --- */
+    .media{
+      display:grid;
+      gap:.8rem;
+    }
+    .media-main{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(650px 320px at 20% 0%, rgba(216,178,106,.22), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      min-height: 320px;
+      position:relative;
+      overflow:hidden;
+    }
+    .media-row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:.8rem;
+    }
+    .media-tile{
+      border-radius: var(--radius);
+      border:1px dashed rgba(216,178,106,.35);
+      background: rgba(255,255,255,.05);
+      min-height: 150px;
+      position:relative;
+      overflow:hidden;
+    }
+    .ph{
+      position:absolute; left: 12px; bottom: 10px;
+      padding:.35rem .55rem; border-radius:12px;
+      background: rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.10);
+      color: rgba(238,242,246,.78);
+      font-size:.9rem;
+    }
+
+    /* animated “grain” overlay */
+    .grain::after{
+      content:"";
+      position:absolute; inset:-30%;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+      opacity:.10;
+      mix-blend-mode: overlay;
+      transform: rotate(3deg);
+      animation: drift 10s linear infinite;
+      pointer-events:none;
+    }
+    @keyframes drift{
+      0%{ transform: translate(-2%, -2%) rotate(3deg); }
+      100%{ transform: translate(2%, 2%) rotate(3deg); }
+    }
+
+    /* --- Section base --- */
+    .section{ padding: 2.4rem 0; }
+    .section.alt{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), transparent 50%);
+      border-top: 1px solid rgba(255,255,255,.06);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .sectionhead{
+      display:flex; align-items:end; justify-content:space-between;
+      gap:1rem; flex-wrap:wrap;
+      margin-bottom: 1.2rem;
+    }
+    .title{
+      font-family: var(--serif);
+      font-size: 2.05rem;
+      margin:0;
+      letter-spacing:-.01em;
+    }
+    .subtitle{
+      margin:0;
+      color: rgba(238,242,246,.70);
+      max-width: 60ch;
+    }
+
+    /* --- Tap list --- */
+    .tapgrid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: .9rem;
+    }
+    .tap{
+      padding: 1rem;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      box-shadow: 0 12px 30px rgba(0,0,0,.22);
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .tap:hover{
+      transform: translateY(-2px);
+      border-color: rgba(216,178,106,.40);
+      background: linear-gradient(180deg, rgba(216,178,106,.10), rgba(255,255,255,.03));
+    }
+    .tap h3{ margin:.05rem 0 .2rem; letter-spacing:-.01em; }
+    .meta{ color: rgba(238,242,246,.75); font-weight:650; margin:0; }
+    .notes{ color: rgba(238,242,246,.78); margin:.55rem 0 .8rem; }
+    .chips{ display:flex; gap:.5rem; flex-wrap:wrap; }
+    .chip{
+      font-size:.82rem;
+      padding:.28rem .55rem;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      color: rgba(238,242,246,.78);
+    }
+    .badge{
+      position:absolute;
+      top: 12px; right: 12px;
+      padding:.32rem .55rem;
+      border-radius: 999px;
+      font-size:.78rem;
+      font-weight:800;
+      color:#0b0d10;
+      background: linear-gradient(180deg, rgba(240,194,122,.95), rgba(199,122,58,.85));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: 0 10px 22px rgba(0,0,0,.25);
+    }
+
+    /* --- Events --- */
+    .eventlist{ display:flex; flex-direction:column; gap:.75rem; }
+    .event{
+      display:grid;
+      grid-template-columns: 94px 1fr auto;
+      gap: 1rem;
+      align-items:center;
+      padding: 1rem;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      border:1px solid var(--line);
+      box-shadow: 0 12px 28px rgba(0,0,0,.20);
+    }
+    .datebox{
+      border-radius: 16px;
+      border:1px solid rgba(216,178,106,.35);
+      background: rgba(216,178,106,.10);
+      padding:.7rem .6rem;
+      text-align:center;
+    }
+    .dow{ font-weight:900; letter-spacing:.08em; font-size:.85rem; color: rgba(238,242,246,.86); }
+    .dom{ font-size:1.45rem; font-weight:950; margin-top:.05rem; }
+    .event h3{ margin:.1rem 0 .1rem; }
+    .smallmuted{ color: rgba(238,242,246,.70); margin:0; }
+    .event a{
+      padding:.7rem .9rem;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      white-space:nowrap;
+    }
+    .event a:hover{ text-decoration:none; border-color: rgba(216,178,106,.30); }
+
+    /* --- Private events split --- */
+    .split{
+      display:grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap: 1.2rem;
+      align-items:start;
+    }
+    .callout{
+      padding: 1.1rem 1.1rem;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(216,178,106,.10), rgba(255,255,255,.03));
+      border:1px solid rgba(216,178,106,.25);
+      box-shadow: var(--shadow);
+    }
+    .callout h3{
+      font-family: var(--serif);
+      margin:.1rem 0 .35rem;
+      font-size: 1.5rem;
+      letter-spacing:-.01em;
+    }
+    .bullets{ list-style:none; padding:0; margin: .85rem 0 0; display:grid; gap:.55rem; }
+    .bullets li{
+      padding-left: 1.65rem; position:relative; color: rgba(238,242,246,.84);
+    }
+    .bullets li::before{
+      content:"✓";
+      position:absolute; left:0; top:0;
+      color: var(--brass);
+      font-weight:900;
+    }
+
+    /* --- Forms --- */
+    form{ display:grid; gap:.75rem; margin-top:.85rem; }
+    label{ display:grid; gap:.35rem; }
+    label span{ font-weight:800; font-size:.92rem; color: rgba(238,242,246,.86); }
+    input,select,textarea{
+      width:100%;
+      padding:.85rem .9rem;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.22);
+      color: var(--ink);
+      outline:none;
+    }
+    input::placeholder, textarea::placeholder{ color: rgba(238,242,246,.42); }
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(216,178,106,.45);
+      box-shadow: 0 0 0 4px rgba(216,178,106,.12);
+    }
+    .row{ display:grid; grid-template-columns: 1fr 1fr; gap:.75rem; }
+    .fine{ color: rgba(238,242,246,.62); font-size:.85rem; margin:.2rem 0 0; }
+
+    /* --- Gallery --- */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: .75rem;
+    }
+    .g{
+      border-radius: var(--radius);
+      border:1px dashed rgba(216,178,106,.35);
+      background: rgba(255,255,255,.04);
+      min-height: 130px;
+      position:relative;
+      overflow:hidden;
+    }
+    .g:hover{ border-style:solid; border-color: rgba(216,178,106,.40); }
+
+    /* --- Footer --- */
+    footer{
+      padding: 2rem 0;
+      border-top: 1px solid rgba(255,255,255,.06);
+      background: rgba(0,0,0,.18);
+    }
+    .foot{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:1rem; flex-wrap:wrap;
+    }
+    .footlinks{ display:flex; gap:.9rem; flex-wrap:wrap; }
+    .footlinks a{
+      padding:.35rem .55rem;
+      border-radius: 12px;
+      color: rgba(238,242,246,.78);
+    }
+    .footlinks a:hover{ background: rgba(255,255,255,.06); text-decoration:none; }
+    .copy{ color: rgba(238,242,246,.62); font-size:.9rem; }
+
+    /* --- Responsive --- */
+    @media (max-width: 1020px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .kpi-row{ grid-template-columns: 1fr; }
+      .tapgrid{ grid-template-columns: repeat(2, 1fr); }
+      .split{ grid-template-columns: 1fr; }
+      .gallery{ grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 760px){
+      .nav{ display:none; position:absolute; right:1.1rem; top:66px;
+        flex-direction:column; align-items:stretch; gap:.25rem; padding:.6rem;
+        width:min(340px, calc(100% - 2.2rem));
+        border-radius: 18px;
+        background: rgba(10,12,16,.92);
+        border:1px solid rgba(255,255,255,.10);
+        box-shadow: var(--shadow);
+      }
+      .nav.open{ display:flex; }
+      .nav-toggle{ display:inline-grid; place-items:center; }
+      .tapgrid{ grid-template-columns: 1fr; }
+      .row{ grid-template-columns: 1fr; }
+      .event{ grid-template-columns: 80px 1fr; }
+      .event a{ grid-column: 1 / -1; justify-self:start; }
+      .gallery{ grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#">
+        <span class="mark" aria-hidden="true">KB</span>
+        <span class="brandtext">
+          <span class="name">Kaweah Brewing Co.</span><br>
+          <span class="sub">Taproom • Events • Private Bookings</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" aria-controls="nav" aria-expanded="false" title="Menu">
+        <span class="bars" aria-hidden="true"></span>
+      </button>
+
+      <nav id="nav" class="nav" aria-label="Primary">
+        <a href="#tap">Tap List</a>
+        <a href="#events">Events</a>
+        <a href="#private">Private Events</a>
+        <a href="#gallery">Gallery</a>
+        <a class="btn btn-small" href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="btn-pill">Central Valley craft beer • premium web mockup</span>
+          <h1 class="headline">The website should feel like the first sip.</h1>
+          <p class="lead">
+            This layout is built to make an owner go: “ok… who built THIS?” — cinematic visuals,
+            clear paths to bookings, and sections that sell the taproom vibe instead of just “contact us.”
+          </p>
+
+          <div class="hero-ctas">
+            <a class="btn" href="#private">Book a Private Event</a>
+            <a class="btn btn-ghost" href="#tap">View Tap List</a>
+          </div>
+
+          <div class="kpi-row" aria-label="Highlights">
+            <div class="kpi">
+              <div class="t">Fast conversion</div>
+              <div class="v">Events + bookings first</div>
+            </div>
+            <div class="kpi">
+              <div class="t">Visual credibility</div>
+              <div class="v">Gallery + story built-in</div>
+            </div>
+            <div class="kpi">
+              <div class="t">Owner-friendly</div>
+              <div class="v">Tap list editable in minutes</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="media">
+          <div class="media-main grain" aria-label="Hero photo placeholder">
+            <div class="ph">hero-taproom.jpg</div>
+          </div>
+          <div class="media-row">
+            <div class="media-tile grain"><div class="ph">beer-pour.jpg</div></div>
+            <div class="media-tile grain"><div class="ph">brewhouse.jpg</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAP LIST -->
+    <section id="tap" class="section alt">
+      <div class="container">
+        <div class="sectionhead">
+          <div>
+            <h2 class="title">Tap List</h2>
+            <p class="subtitle">A real tap list page turns “maybe later” into “pulling up tonight.”</p>
+          </div>
+          <a class="btn btn-ghost" href="#contact">Ask about distribution</a>
+        </div>
+
+        <div class="tapgrid">
+          <article class="tap">
+            <span class="badge">Flagship</span>
+            <h3>Riverstone IPA</h3>
+            <p class="meta">IPA • 6.8% ABV</p>
+            <p class="notes">Citrus, pine, clean finish. The “one more” pint.</p>
+            <div class="chips">
+              <span class="chip">Hoppy</span><span class="chip">Crisp finish</span>
+            </div>
+          </article>
+
+          <article class="tap">
+            <h3>Foothill Pils</h3>
+            <p class="meta">Pilsner • 4.9% ABV</p>
+            <p class="notes">Bright, snappy, patio-ready. Zero fuss.</p>
+            <div class="chips">
+              <span class="chip">Light</span><span class="chip">Crisp</span>
+            </div>
+          </article>
+
+          <article class="tap">
+            <span class="badge">Fan favorite</span>
+            <h3>Sequoia Amber</h3>
+            <p class="meta">Amber Ale • 5.4% ABV</p>
+            <p class="notes">Toasty malt, caramel, smooth finish.</p>
+            <div class="chips">
+              <span class="chip">Malty</span><span class="chip">Smooth</span>
+            </div>
+          </article>
+
+          <article class="tap">
+            <h3>Dark Canyon Stout</h3>
+            <p class="meta">Stout • 7.2% ABV</p>
+            <p class="notes">Roast + cocoa, velvet body. Dessert without trying.</p>
+            <div class="chips">
+              <span class="chip">Rich</span><span class="chip">Dark</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section id="events" class="section">
+      <div class="container">
+        <div class="sectionhead">
+          <div>
+            <h2 class="title">Events</h2>
+            <p class="subtitle">Stop answering “what’s going on?” in DMs. Put it here.</p>
+          </div>
+          <a class="btn btn-ghost" href="#contact">Reserve a table</a>
+        </div>
+
+        <div class="eventlist">
+          <article class="event">
+            <div class="datebox">
+              <div class="dow">THU</div>
+              <div class="dom">07</div>
+            </div>
+            <div>
+              <h3>Trivia Night</h3>
+              <p class="smallmuted">7:00 PM • Teams welcome • Prizes</p>
+            </div>
+            <a href="#contact">Reserve</a>
+          </article>
+
+          <article class="event">
+            <div class="datebox">
+              <div class="dow">FRI</div>
+              <div class="dom">08</div>
+            </div>
+            <div>
+              <h3>Live Music</h3>
+              <p class="smallmuted">8:00 PM • Local band • No cover</p>
+            </div>
+            <a href="#contact">Details</a>
+          </article>
+
+          <article class="event">
+            <div class="datebox">
+              <div class="dow">SAT</div>
+              <div class="dom">09</div>
+            </div>
+            <div>
+              <h3>New Beer Release</h3>
+              <p class="smallmuted">All day • Limited run • First pour at noon</p>
+            </div>
+            <a href="#tap">Tap list</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRIVATE EVENTS -->
+    <section id="private" class="section alt">
+      <div class="container split">
+        <div>
+          <h2 class="title">Private Events</h2>
+          <p class="subtitle">
+            This is the “high-intent” page. Make it effortless to book birthdays, work events,
+            celebrations, and buyouts.
+          </p>
+
+          <div style="height:.8rem"></div>
+
+          <div class="callout">
+            <h3>What this page fixes</h3>
+            <ul class="bullets">
+              <li>Creates a dedicated booking funnel (not a generic contact form)</li>
+              <li>Captures the info staff actually needs (date, guests, event type)</li>
+              <li>Sets expectations (response time, options, packages)</li>
+              <li>Makes the space look premium (photos + layout)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout">
+          <h3>Request a quote</h3>
+          <p class="smallmuted">Mock form. Wire to Formspree / email routing / CRM.</p>
+
+          <form action="#" method="post">
+            <label>
+              <span>Event type</span>
+              <select name="event_type" required>
+                <option value="" selected disabled>Select one</option>
+                <option>Birthday</option>
+                <option>Work / Team Event</option>
+                <option>Reception</option>
+                <option>Buyout</option>
+                <option>Other</option>
+              </select>
+            </label>
+
+            <div class="row">
+              <label>
+                <span>Guests</span>
+                <input type="number" name="guests" min="2" placeholder="25" />
+              </label>
+              <label>
+                <span>Date</span>
+                <input type="date" name="date" />
+              </label>
+            </div>
+
+            <label>
+              <span>Name + best contact</span>
+              <input type="text" name="contact" placeholder="Kayla • (555) 555-5555" required />
+            </label>
+
+            <label>
+              <span>Notes</span>
+              <textarea name="notes" rows="4" placeholder="Time, seating needs, special requests…"></textarea>
+            </label>
+
+            <button class="btn" type="submit">Send request</button>
+            <p class="fine">Response promise: within 24 hours.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="section">
+      <div class="container">
+        <div class="sectionhead">
+          <div>
+            <h2 class="title">Gallery</h2>
+            <p class="subtitle">If it doesn’t look like a vibe online, people don’t show up.</p>
+          </div>
+          <a class="btn btn-ghost" href="#contact">Plan a visit</a>
+        </div>
+
+        <div class="gallery" aria-label="Gallery placeholders">
+          <div class="g grain"><div class="ph">gallery-1.jpg</div></div>
+          <div class="g grain"><div class="ph">gallery-2.jpg</div></div>
+          <div class="g grain"><div class="ph">gallery-3.jpg</div></div>
+          <div class="g grain"><div class="ph">gallery-4.jpg</div></div>
+          <div class="g grain"><div class="ph">gallery-5.jpg</div></div>
+          <div class="g grain"><div class="ph">gallery-6.jpg</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section alt">
+      <div class="container split">
+        <div>
+          <h2 class="title">Contact</h2>
+          <p class="subtitle">
+            Contact page that routes correctly: general, events, distribution. Less chaos, faster replies.
+          </p>
+
+          <div style="height:.9rem"></div>
+
+          <div class="callout">
+            <h3>Taproom</h3>
+            <p class="smallmuted">Address line • Visalia, CA</p>
+            <p class="smallmuted">Phone: (###) ###-####</p>
+            <div style="height:.6rem"></div>
+            <a class="btn btn-ghost" href="#">Get directions</a>
+          </div>
+        </div>
+
+        <div class="callout">
+          <h3>Send a message</h3>
+          <form action="#" method="post">
+            <div class="row">
+              <label>
+                <span>Name</span>
+                <input required type="text" name="name" placeholder="Your name" />
+              </label>
+              <label>
+                <span>Email</span>
+                <input required type="email" name="email" placeholder="you@email.com" />
+              </label>
+            </div>
+
+            <div class="row">
+              <label>
+                <span>Reason</span>
+                <select name="reason" required>
+                  <option value="" selected disabled>Select one</option>
+                  <option>General</option>
+                  <option>Private event</option>
+                  <option>Large group / reservation</option>
+                  <option>Distribution</option>
+                  <option>Press / media</option>
+                </select>
+              </label>
+              <label>
+                <span>Phone</span>
+                <input type="tel" name="phone" placeholder="(555) 555-5555" />
+              </label>
+            </div>
+
+            <label>
+              <span>Message</span>
+              <textarea required name="message" rows="5" placeholder="What do you need?"></textarea>
+            </label>
+
+            <button class="btn" type="submit">Send</button>
+            <p class="fine">Mockup: swap <code>action</code> for Formspree / backend endpoint.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <div class="brand">
+        <span class="mark" aria-hidden="true">KB</span>
+        <span class="brandtext">
+          <span class="name">Kaweah Brewing Co.</span><br>
+          <span class="sub">Premium mockup concept</span>
+        </span>
+      </div>
+
+      <nav class="footlinks" aria-label="Footer">
+        <a href="#tap">Tap List</a>
+        <a href="#events">Events</a>
+        <a href="#private">Private Events</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="copy">© <span id="y"></span> — Concept layout</div>
+    </div>
+  </footer>
+
+  <script>
+    // year
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    // mobile nav
+    const toggle = document.querySelector(".nav-toggle");
+    const nav = document.getElementById("nav");
+    if (toggle && nav) {
+      toggle.addEventListener("click", () => {
+        const expanded = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", String(!expanded));
+        nav.classList.toggle("open");
+      });
+    }
+  </script>
+</body>
+</html>
