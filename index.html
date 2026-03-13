@@ -345,7 +345,35 @@
       border:1px solid rgba(255,255,255,.10);
       box-shadow: 0 10px 22px rgba(0,0,0,.25);
     }
+.menu-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
 
+.menu-category{
+background:rgba(255,255,255,0.05);
+padding:20px;
+border-radius:14px;
+border:1px solid rgba(255,255,255,0.1);
+}
+
+.menu-category h3{
+margin-bottom:15px;
+font-size:20px;
+}
+
+.menu-item{
+display:flex;
+justify-content:space-between;
+margin-bottom:12px;
+}
+
+.menu-item p{
+margin:3px 0 0;
+color:#bbb;
+font-size:14px;
+}
     /* --- Events --- */
     .eventlist{ display:flex; flex-direction:column; gap:.75rem; }
     .event{
@@ -618,7 +646,88 @@
         </div>
       </div>
     </section>
+<section id="menu" class="section">
+  <div class="container">
 
+    <div class="sectionhead">
+      <h2 class="title">Taproom Menu</h2>
+      <p class="subtitle">
+        Great beer deserves great food. Designed to make people decide
+        what they're ordering before they even arrive.
+      </p>
+    </div>
+
+    <div class="menu-grid">
+
+      <div class="menu-category">
+        <h3>Shareables</h3>
+
+        <div class="menu-item">
+          <div>
+            <strong>Pretzel Bites</strong>
+            <p>Warm pretzels • beer cheese dip</p>
+          </div>
+          <span>$9</span>
+        </div>
+
+        <div class="menu-item">
+          <div>
+            <strong>Loaded Nachos</strong>
+            <p>Cheese • jalapeño • pico • crema</p>
+          </div>
+          <span>$13</span>
+        </div>
+
+      </div>
+
+
+      <div class="menu-category">
+        <h3>Flatbreads</h3>
+
+        <div class="menu-item">
+          <div>
+            <strong>Brewery BBQ</strong>
+            <p>BBQ chicken • red onion • mozzarella</p>
+          </div>
+          <span>$15</span>
+        </div>
+
+        <div class="menu-item">
+          <div>
+            <strong>Margherita</strong>
+            <p>Tomato • basil • fresh mozzarella</p>
+          </div>
+          <span>$14</span>
+        </div>
+
+      </div>
+
+
+      <div class="menu-category">
+        <h3>Burgers</h3>
+
+        <div class="menu-item">
+          <div>
+            <strong>The Taproom Burger</strong>
+            <p>Cheddar • caramelized onion • brioche</p>
+          </div>
+          <span>$16</span>
+        </div>
+
+        <div class="menu-item">
+          <div>
+            <strong>Black Bean Burger</strong>
+            <p>Chipotle mayo • avocado</p>
+          </div>
+          <span>$15</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
     <!-- EVENTS -->
     <section id="events" class="section">
       <div class="container">
