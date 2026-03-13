@@ -1,40 +1,467 @@
-<!-- premium-mockup.html  (single file, open in browser) -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kaweah Brewing Co. — Premium Mockup</title>
-  <meta name="description" content="Premium brewery website mockup: tap list, events, private bookings, and gallery." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Optional: remove if you want zero external deps -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root{
-      --bg:#07080b;
-      --bg2:#0b0d12;
-      --ink:#eef2f6;
-      --muted:#aab2bf;
-      --line:rgba(255,255,255,.10);
-      --line2:rgba(255,255,255,.16);
+<title>Kaweah Brewing Co. Concept</title>
 
-      /* “dark wood / brass” vibe */
-      --brass:#d8b26a;
-      --brass2:#b7893e;
-      --amber:#f0c27a;
-      --copper:#c77a3a;
+<style>
 
-      --card:rgba(255,255,255,.06);
-      --card2:rgba(255,255,255,.04);
-      --shadow: 0 24px 70px rgba(0,0,0,.55);
-      --radius: 20px;
-      --radius2: 14px;
+body{
+margin:0;
+font-family:Arial;
+background:#0c0e12;
+color:white;
+}
 
-      --max: 1160px;
-      --serif: "Cormorant Garamond", ui-serif, Georgia, serif;
-      --sans: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+/* NAV */
+
+header{
+background:#11151c;
+padding:20px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid #262a31;
+}
+
+nav a{
+margin-left:20px;
+text-decoration:none;
+color:#ddd;
+font-weight:500;
+}
+
+nav a:hover{
+color:#f1c27d;
+}
+
+/* HERO */
+
+.hero{
+padding:90px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.hero h1{
+font-size:48px;
+margin-bottom:20px;
+}
+
+.hero p{
+max-width:500px;
+color:#aaa;
+}
+
+.button{
+background:#f1c27d;
+color:black;
+padding:12px 18px;
+border-radius:6px;
+font-weight:bold;
+display:inline-block;
+margin-top:20px;
+}
+
+.image{
+width:420px;
+height:260px;
+border:2px dashed #555;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#777;
+}
+
+/* SECTION */
+
+.section{
+padding:70px 40px;
+border-top:1px solid #1d1f24;
+}
+
+.section h2{
+margin-bottom:30px;
+font-size:32px;
+}
+
+/* TAP LIST */
+
+.tap-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+}
+
+.tap{
+background:#161a22;
+padding:20px;
+border-radius:10px;
+}
+
+/* MENU */
+
+.menu-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+.menu-category{
+background:#161a22;
+padding:20px;
+border-radius:10px;
+}
+
+.menu-item{
+display:flex;
+justify-content:space-between;
+margin-bottom:15px;
+}
+
+.menu-item p{
+margin:2px 0 0;
+font-size:13px;
+color:#aaa;
+}
+
+/* EVENTS */
+
+.event{
+display:flex;
+justify-content:space-between;
+background:#161a22;
+padding:18px;
+border-radius:10px;
+margin-bottom:15px;
+}
+
+/* GALLERY */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+}
+
+.gallery div{
+height:130px;
+border:2px dashed #555;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#777;
+}
+
+/* REVIEW SECTION */
+
+.review-section{
+text-align:center;
+}
+
+.review-buttons{
+margin-top:30px;
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.review{
+padding:14px 20px;
+border-radius:8px;
+font-weight:bold;
+text-decoration:none;
+}
+
+.google{background:#4285F4;color:white;}
+.yelp{background:#E00707;color:white;}
+.facebook{background:#1877F2;color:white;}
+
+/* CONTACT */
+
+.contact-form{
+max-width:600px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.contact-form input,
+.contact-form textarea{
+padding:12px;
+border-radius:6px;
+border:none;
+}
+
+.contact-form button{
+background:#f1c27d;
+border:none;
+padding:12px;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* FOOTER */
+
+footer{
+padding:40px;
+text-align:center;
+border-top:1px solid #222;
+color:#888;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<header>
+<h2>Kaweah Brewing Co.</h2>
+
+<nav>
+<a href="#tap">Tap List</a>
+<a href="#menu">Menu</a>
+<a href="#events">Events</a>
+<a href="#reviews">Reviews</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+
+<section class="hero">
+
+<div>
+<h1>Craft Beer. Good People. Great Nights.</h1>
+
+<p>
+A premium website concept designed to bring more people
+into the taproom and make booking events effortless.
+</p>
+
+<div class="button">View Tap List</div>
+
+</div>
+
+<div class="image">
+taproom-photo.jpg
+</div>
+
+</section>
+
+
+<section id="tap" class="section">
+
+<h2>Tap List</h2>
+
+<div class="tap-grid">
+
+<div class="tap">
+<h3>Riverstone IPA</h3>
+<p>6.8% ABV • Citrus • Pine</p>
+</div>
+
+<div class="tap">
+<h3>Foothill Pils</h3>
+<p>4.9% ABV • Crisp • Light</p>
+</div>
+
+<div class="tap">
+<h3>Sequoia Amber</h3>
+<p>5.4% ABV • Caramel • Smooth</p>
+</div>
+
+<div class="tap">
+<h3>Dark Canyon Stout</h3>
+<p>7.2% ABV • Chocolate • Roast</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section id="menu" class="section">
+
+<h2>Taproom Menu</h2>
+
+<div class="menu-grid">
+
+<div class="menu-category">
+
+<h3>Shareables</h3>
+
+<div class="menu-item">
+<div>
+<strong>Pretzel Bites</strong>
+<p>Beer cheese dip</p>
+</div>
+<span>$9</span>
+</div>
+
+<div class="menu-item">
+<div>
+<strong>Loaded Nachos</strong>
+<p>Cheese • jalapeño • pico</p>
+</div>
+<span>$13</span>
+</div>
+
+</div>
+
+
+<div class="menu-category">
+
+<h3>Flatbreads</h3>
+
+<div class="menu-item">
+<div>
+<strong>BBQ Chicken</strong>
+<p>Red onion • mozzarella</p>
+</div>
+<span>$15</span>
+</div>
+
+<div class="menu-item">
+<div>
+<strong>Margherita</strong>
+<p>Basil • fresh mozzarella</p>
+</div>
+<span>$14</span>
+</div>
+
+</div>
+
+
+<div class="menu-category">
+
+<h3>Burgers</h3>
+
+<div class="menu-item">
+<div>
+<strong>Taproom Burger</strong>
+<p>Cheddar • onion</p>
+</div>
+<span>$16</span>
+</div>
+
+<div class="menu-item">
+<div>
+<strong>Black Bean Burger</strong>
+<p>Chipotle mayo</p>
+</div>
+<span>$15</span>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="events" class="section">
+
+<h2>Upcoming Events</h2>
+
+<div class="event">
+<div>
+<strong>Trivia Night</strong>
+<p>Thursday • 7pm</p>
+</div>
+<span>Reserve</span>
+</div>
+
+<div class="event">
+<div>
+<strong>Live Music</strong>
+<p>Friday • 8pm</p>
+</div>
+<span>Details</span>
+</div>
+
+<div class="event">
+<div>
+<strong>New Beer Release</strong>
+<p>Saturday</p>
+</div>
+<span>Tap List</span>
+</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>Gallery</h2>
+
+<div class="gallery">
+<div>photo1.jpg</div>
+<div>photo2.jpg</div>
+<div>photo3.jpg</div>
+<div>photo4.jpg</div>
+<div>photo5.jpg</div>
+<div>photo6.jpg</div>
+</div>
+
+</section>
+
+
+<section id="reviews" class="section review-section">
+
+<h2>Love the beer?</h2>
+
+<p>Leave a review and help others discover the taproom.</p>
+
+<div class="review-buttons">
+
+<a class="review google">Leave a Google Review</a>
+
+<a class="review yelp">Leave a Yelp Review</a>
+
+<a class="review facebook">Recommend on Facebook</a>
+
+</div>
+
+</section>
+
+
+<section id="contact" class="section">
+
+<h2>Contact</h2>
+
+<form class="contact-form">
+
+<input placeholder="Name">
+
+<input placeholder="Email">
+
+<textarea rows="4" placeholder="Message"></textarea>
+
+<button>Send Message</button>
+
+</form>
+
+</section>
+
+
+<footer>
+
+Kaweah Brewing Co. • Website Concept
+
+</footer>
+
+
+</body>
+
+</html>      --sans: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
 
     *{box-sizing:border-box}
